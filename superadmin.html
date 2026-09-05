@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDUPORTAIL — Super Administrateur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <span class="wordmark">EDUPORTAIL</span>
+    <span class="role-badge">Super Administrateur</span>
+  </div>
+  <div class="session">Académie de La Réunion · <a href="index.html" style="color:#EFE7FB;">Se déconnecter</a></div>
+</header>
+
+<div class="workspace">
+  <nav class="sidebar">
+    <button class="tab active" data-tab="etablissements"><span class="num">01</span>Établissements</button>
+    <button class="tab" data-tab="inscription"><span class="num">02</span>Inscription élève</button>
+    <button class="tab" data-tab="bulletins"><span class="num">03</span>Bulletins officiel (INE)</button>
+  </nav>
+
+  <main class="content">
+
+    <!-- ================= ONGLET ÉTABLISSEMENTS ================= -->
+    <section id="panel-etablissements">
+      <h1 class="panel-title">Établissements</h1>
+      <p class="panel-sub">Registre des établissements de La Réunion. Chaque établissement est identifié par son RNE.</p>
+
+      <div class="notice demo">
+        Jeu de démonstration : cette liste ne contient que quelques établissements d'exemple. Complète-la avec les RNE réels avant toute utilisation en conditions réelles.
+      </div>
+
+      <div class="folder">
+        <div class="folder-header">
+          <h2>Registre des établissements</h2>
+          <span id="etab-count" style="font-size:13px;color:var(--ink-soft);"></span>
+        </div>
+        <div class="folder-body">
+          <table class="registre">
+            <thead>
+              <tr><th>RNE</th><th>Établissement</th><th>Commune</th><th>Type</th></tr>
+            </thead>
+            <tbody id="etab-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="folder">
+        <div class="folder-header"><h2>Créer un établissement</h2></div>
+        <div class="folder-body">
+          <form id="form-etab">
+            <div class="field-grid">
+              <div>
+                <label for="etab-rne">RNE</label>
+                <input type="text" id="etab-rne" placeholder="ex. 9740006E" required>
+              </div>
+              <div>
+                <label for="etab-nom">Nom de l'établissement</label>
+                <input type="text" id="etab-nom" required>
+              </div>
+              <div>
+                <label for="etab-ville">Commune</label>
+                <input type="text" id="etab-ville" required>
+              </div>
+              <div>
+                <label for="etab-type">Type</label>
+                <select id="etab-type">
+                  <option>Lycée général et technologique</option>
+                  <option>Lycée professionnel</option>
+                  <option>Lycée polyvalent</option>
+                  <option>Collège</option>
+                </select>
+              </div>
+            </div>
+            <div class="actions-row">
+              <button type="submit" class="btn btn-primary">Ajouter l'établissement</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ONGLET INSCRIPTION ÉLÈVE ================= -->
+    <section id="panel-inscription" style="display:none;">
+      <h1 class="panel-title">Inscription élève</h1>
+      <p class="panel-sub">Fiche d'identité complète. Le numéro national (INE) permet de retrouver l'élève, ses informations et ses bulletins, quel que soit l'établissement RNE où il est inscrit.</p>
+
+      <form id="form-eleve">
+        <div class="fiche-section">
+          <div class="fiche-title">État civil</div>
+          <div class="field-grid">
+            <div>
+              <label for="civilite">Civilité</label>
+              <select id="civilite"><option>Madame</option><option>Monsieur</option></select>
+            </div>
+            <div>
+              <label>Sexe</label>
+              <div class="radio-row">
+                <label><input type="radio" name="sexe" value="M" checked> Masculin</label>
+                <label><input type="radio" name="sexe" value="F"> Féminin</label>
+              </div>
+            </div>
+            <div><label for="nom">Nom</label><input type="text" id="nom" required></div>
+            <div><label for="nom-naissance">Nom de naissance</label><input type="text" id="nom-naissance"></div>
+            <div class="full"><label for="prenoms">Prénom(s) — séparés par une virgule</label><input type="text" id="prenoms" required></div>
+            <div><label for="prenom-usage">Prénom d'usage</label><input type="text" id="prenom-usage"></div>
+            <div><label for="date-naissance">Date de naissance</label><input type="date" id="date-naissance" required></div>
+            <div><label for="lieu-naissance">Lieu de naissance</label><input type="text" id="lieu-naissance"></div>
+            <div><label for="pays-naissance">Pays de naissance</label><input type="text" id="pays-naissance" value="France"></div>
+            <div><label for="nationalite">Nationalité</label><input type="text" id="nationalite" value="Française"></div>
+            <div class="full">
+              <label><input type="checkbox" id="eleve-majeur" style="width:auto;display:inline-block;"> Élève majeur</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="fiche-section">
+          <div class="fiche-title">Informations administratives</div>
+          <div class="field-grid">
+            <div class="full">
+              <label for="ine">Numéro national (INE)</label>
+              <input type="text" id="ine" placeholder="ex. 0123456789A" required>
+            </div>
+            <div><label for="mutuelle-organisme">Mutuelle — organisme</label><input type="text" id="mutuelle-organisme"></div>
+            <div>
+              <label>Cotisation</label>
+              <div class="radio-row">
+                <label><input type="radio" name="cotisation" value="oui"> Oui</label>
+                <label><input type="radio" name="cotisation" value="non" checked> Non</label>
+              </div>
+            </div>
+            <div><label for="arc-organisme">Assurance responsabilité civile — organisme</label><input type="text" id="arc-organisme"></div>
+            <div><label for="arc-contrat">Numéro de contrat</label><input type="text" id="arc-contrat"></div>
+          </div>
+        </div>
+
+        <div class="fiche-section">
+          <div class="fiche-title">Coordonnées</div>
+          <div class="field-grid">
+            <div class="full"><label for="adresse">Adresse</label><input type="text" id="adresse"></div>
+            <div><label for="code-postal">Code postal</label><input type="text" id="code-postal"></div>
+            <div><label for="ville">Ville</label><input type="text" id="ville"></div>
+            <div><label for="telephone">Téléphone</label><input type="tel" id="telephone" placeholder="+262"></div>
+            <div><label for="email">E-mail</label><input type="email" id="email"></div>
+          </div>
+        </div>
+
+        <div class="fiche-section">
+          <div class="fiche-title">Établissement d'inscription</div>
+          <div class="field-grid">
+            <div class="full">
+              <label for="etab-rattachement">Établissement (RNE)</label>
+              <select id="etab-rattachement"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions-row">
+          <button type="submit" class="btn btn-primary">Enregistrer la fiche élève</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ================= ONGLET BULLETINS INE ================= -->
+    <section id="panel-bulletins" style="display:none;">
+      <h1 class="panel-title">Bulletins officiel (INE)</h1>
+      <p class="panel-sub">Saisis le numéro national d'un élève pour retrouver sa fiche et ses bulletins, quel que soit l'établissement qui l'a inscrit.</p>
+
+      <div class="search-row">
+        <input type="text" id="ine-search" placeholder="Numéro national (INE)">
+        <button class="btn btn-primary" id="btn-ine-search">Rechercher</button>
+      </div>
+
+      <div id="ine-result-zone">
+        <div class="empty-state">Aucune recherche effectuée pour l'instant.</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/superadmin.js"></script>
+</body>
+</html>

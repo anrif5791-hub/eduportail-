@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDUPORTAIL — Connexion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(201,138,44,0.12), transparent 45%),
+      var(--paper);
+  }
+  .login-card {
+    width: 380px;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-card);
+    padding: 34px 32px 30px;
+    text-align: center;
+  }
+  .login-wordmark {
+    font-family: var(--font-display);
+    font-size: 30px;
+    color: var(--role-superadmin-deep);
+    margin-bottom: 4px;
+  }
+  .login-sub {
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    margin-bottom: 26px;
+  }
+  .role-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+  .role-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-s);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .role-btn .dot {
+    width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: 10px;
+  }
+  .role-btn:hover { border-color: currentColor; }
+  .role-superadmin-btn .dot { background: var(--role-superadmin); }
+  .role-chef-btn .dot { background: var(--role-superadmin); }
+  .role-prof-btn .dot { background: var(--role-prof); }
+  .role-eleve-btn .dot { background: var(--role-eleve); }
+  .role-parent-btn .dot { background: var(--accent-vanille); }
+  .disabled { opacity: 0.45; pointer-events: none; }
+  .footnote { margin-top: 22px; font-size: 12px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<div class="login-card">
+  <div class="login-wordmark">EDUPORTAIL</div>
+  <div class="login-sub">Académie de La Réunion — espace de connexion</div>
+
+  <div class="role-list">
+    <a class="role-btn role-superadmin-btn" href="superadmin.html">
+      <span><span class="dot"></span>Super Administrateur</span>
+      <span>→</span>
+    </a>
+    <a class="role-btn role-chef-btn disabled" href="#">
+      <span><span class="dot"></span>Chef d'établissement</span>
+      <span>bientôt</span>
+    </a>
+    <a class="role-btn role-prof-btn disabled" href="#">
+      <span><span class="dot"></span>Professeur</span>
+      <span>bientôt</span>
+    </a>
+    <a class="role-btn role-eleve-btn disabled" href="#">
+      <span><span class="dot"></span>Élève</span>
+      <span>bientôt</span>
+    </a>
+    <a class="role-btn role-parent-btn disabled" href="#">
+      <span><span class="dot"></span>Parent</span>
+      <span>bientôt</span>
+    </a>
+  </div>
+
+  <div class="footnote">Prototype de démonstration — données stockées localement dans ce navigateur.</div>
+</div>
+
+</body>
+</html>
